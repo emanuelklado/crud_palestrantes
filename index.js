@@ -5,6 +5,7 @@ const routes = require('./Router/talkerRouter');
 
 const app = express();
 app.use(bodyParser.json());
+
 app.use('/talker', rescue(routes.talkerRouter));
 
 const HTTP_OK_STATUS = 200;
