@@ -7,6 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use('/talker', rescue(routes.talkerRouter));
+app.use('/login', rescue(routes.loginRouter));
 
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
