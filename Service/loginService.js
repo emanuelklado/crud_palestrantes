@@ -1,11 +1,11 @@
 const crypto = require('crypto');
 
-const login = (req, res, _next) => {
-    const { email, password } = req.body;
-    const token = crypto.randomBytes(8).toString('hex');
+const login = async (req, res, _next) => {
+    // const { email, password } = req.body;
+    const token = await crypto.randomBytes(8).toString('hex');
     const user = {
-        email,
-        password,
+        // email,
+        // password,
         token,
     };
     return res.status(200).json(user);

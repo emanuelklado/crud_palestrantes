@@ -2,7 +2,7 @@ const express = require('express');
 
 const talkerRouter = express.Router();
 const loginRouter = express.Router();
-// const middleware = require('../Middleware');
+const middleware = require('../Middleware');
 const service = require('../Service/talkerService');
 const loginService = require('../Service/loginService');
 
@@ -11,7 +11,7 @@ talkerRouter.get('/', service.getAllTalkers);
 talkerRouter.get('/:id', service.getTalkerById);
 
 // ROTAS POST
-loginRouter.post('/', loginService.login);
+loginRouter.post('/', middleware.authMiddleware, middleware.errorMiddleware, loginService.login);
 
 module.exports = {
     talkerRouter,

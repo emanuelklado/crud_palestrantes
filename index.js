@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const rescue = require('express-rescue');
 const routes = require('./Router/talkerRouter');
+const { errorMiddleware } = require('./Middleware');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(errorMiddleware);
 
 app.use('/talker', rescue(routes.talkerRouter));
 app.use('/login', rescue(routes.loginRouter));
