@@ -12,7 +12,7 @@ talkerRouter.get('/', service.getAllTalkers);
 talkerRouter.get('/search', 
 middleware.createMiddleware.validationTokenMidd, 
 service.searchTalkers);
-talkerRouter.get('/:id', service.getTalkerById);// SEMPRE COLOCAR ROTA DE ID POR ULTIMO
+talkerRouter.get('/:id', service.getTalkerById);// SEMPRE COLOCAR ROTA DE :ID POR ULTIMO
 
 // ROTAS POST TALKER
 talkerRouter.post('/', 
