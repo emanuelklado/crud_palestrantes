@@ -1,12 +1,14 @@
 const fs = require('fs/promises');
 
 const TALKERJSON = './talker.json';
+const INTERNALERROR = 'Internal server error'; 
+
 const getAllTalkers = async (req, res, _next) => {
     try {
         const talker = await fs.readFile(TALKERJSON, 'utf8');
         res.status(200).json(JSON.parse(talker));
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: INTERNALERROR });
     }
 };
 
@@ -22,7 +24,7 @@ const getTalkerById = async (req, res, _next) => {
             res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
         }
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: INTERNALERROR });
     }
 };
 
@@ -44,7 +46,7 @@ const createTalker = async (req, res, _next) => {
         await fs.writeFile(TALKERJSON, JSON.stringify(talkerJson));
         res.status(201).json(newTalker);
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: INTERNALERROR });
     }
 };
 
@@ -81,14 +83,44 @@ const deleteTalker = async (req, res, _next) => {
             res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
         }
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: INTERNALERROR });
     }
 };
 
+const searchTalkers = async (req, res, _next) => {
+    try {
+    const { q } = req.query;
+    console.log('entrei no search');
+    const talker = await fs.readFile(TALKERJSON, 'utf8');
+    const talkerJson = JSON.parse(talker);
+  
+    const talkers = talkerJson.filter((talk) => 
+    talk.name.toLowerCase().includes(q.toLowerCase()));
+      
+    if (!q || q === '') {
+        return res.status(200).json({ message: 'Preencha o campo de busca' });
+    } 
+        return res.status(200).json(talkers);
+    } catch (error) {
+        res.status(500).json({ message: INTERNALERROR });
+    }
+};
+
+    // const { name } = req.query;
+    // const talker = await fs.readFile(TALKERJSON, 'utf8');
+    // const talkerJson = JSON.parse(talker);
+    // const talkers = talkerJson.filter((talk) => 
+    // talk.name.toLowerCase().includes(name.toLowerCase()));
+    // if (talkers.length > 0) {
+    //     res.status(200).json(talkers);
+    // } else {
+    //     res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+    // }
 module.exports = {
     getAllTalkers,
     getTalkerById,
     createTalker,
     updateTalker,
     deleteTalker,
+    searchTalkers,
 };

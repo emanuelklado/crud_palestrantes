@@ -8,7 +8,11 @@ const loginService = require('../Service/loginService');
 
 // ROTAS GET TALKER
 talkerRouter.get('/', service.getAllTalkers);
-talkerRouter.get('/:id', service.getTalkerById);
+
+talkerRouter.get('/search', 
+middleware.createMiddleware.validationTokenMidd, 
+service.searchTalkers);
+talkerRouter.get('/:id', service.getTalkerById);// SEMPRE COLOCAR ROTA DE ID POR ULTIMO
 
 // ROTAS POST TALKER
 talkerRouter.post('/', 
