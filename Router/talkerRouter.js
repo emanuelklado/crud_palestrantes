@@ -23,6 +23,19 @@ service.createTalker);
 // ROTAS POST LOGIN
 loginRouter.post('/', middleware.authMiddleware, middleware.errorMiddleware, loginService.login);
 
+// ROTAS PUT TALKER
+talkerRouter.put('/:id',
+middleware.createMiddleware.validationTokenMidd, 
+middleware.createMiddleware.validationNameMidd, 
+middleware.createMiddleware.validationAgeMidd,
+middleware.createMiddleware.validationTalkMidd,
+middleware.createMiddleware.validationRateMidd,
+middleware.createMiddleware.validationWatchedAtMidd,
+service.updateTalker);
+
+// ROTAS DELETE TALKER
+talkerRouter.delete('/:id', middleware.createMiddleware.validationTokenMidd, service.deleteTalker);
+
 module.exports = {
     talkerRouter,
     loginRouter,
