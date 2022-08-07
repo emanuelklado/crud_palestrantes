@@ -106,16 +106,6 @@ const searchTalkers = async (req, res, _next) => {
     }
 };
 
-    // const { name } = req.query;
-    // const talker = await fs.readFile(TALKERJSON, 'utf8');
-    // const talkerJson = JSON.parse(talker);
-    // const talkers = talkerJson.filter((talk) => 
-    // talk.name.toLowerCase().includes(name.toLowerCase()));
-    // if (talkers.length > 0) {
-    //     res.status(200).json(talkers);
-    // } else {
-    //     res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
-    // }
 module.exports = {
     getAllTalkers,
     getTalkerById,
