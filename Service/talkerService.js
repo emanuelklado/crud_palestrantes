@@ -89,13 +89,11 @@ const deleteTalker = async (req, res, _next) => {
 
 const searchTalkers = async (req, res, _next) => {
     try {
-    const { q } = req.query;
-    console.log('entrei no search');
-    const talker = await fs.readFile(TALKERJSON, 'utf8');
-    const talkerJson = JSON.parse(talker);
-  
-    const talkers = talkerJson.filter((talk) => 
-    talk.name.toLowerCase().includes(q.toLowerCase()));
+        const { q } = req.query;
+        const talker = await fs.readFile(TALKERJSON, 'utf8');
+        const talkerJson = JSON.parse(talker);
+        const talkers = talkerJson.filter((talk) => 
+        talk.name.toLowerCase().includes(q.toLowerCase()));
       
     if (!q || q === '') {
         return res.status(200).json({ message: 'Preencha o campo de busca' });
