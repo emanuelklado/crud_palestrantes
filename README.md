@@ -1,6 +1,6 @@
 
 <details>
-  <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
+  <summary><strong>👨‍💻 O que foi desenvolvido</strong><br />
 
    Uma aplicação de cadastro de talkers (palestrantes) em que é possível cadastrar, visualizar, pesquisar, editar e excluir informações.
 
@@ -16,7 +16,7 @@
     - `talk` (palestra que a pessoa irá ministrar);
     - `watchedAt` (data em que a palestra foi assistida);
     - `rate` (nota de 1 a 5 dada para a palestra).
-    
+  </summary>  
 </details>
 
 # Orientações
