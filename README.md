@@ -3,7 +3,7 @@
   <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
 
    Uma aplicação de cadastro de talkers (palestrantes) em que é possível cadastrar, visualizar, pesquisar, editar e excluir informações.
-   
+
    * Foi utilizado Node.js, Express, Docker e Swagger (documentação da API). Neste projeto ainda não foi utilizado banco de dados, os dados são armazenados em memória, assim como a arquiterura ainda não foi definida, visto que se tratou de meu primeiro contato com Node.js e Express.
 
    <strong>características:</strong>
@@ -141,6 +141,7 @@ Os campos recebidos pela requisição devem ser validados e, caso os valores sej
 
 
 - A requisição deve ter o token de autenticação nos headers, no campo `authorization`.
+</details>
 
 ## 6 - Crie o endpoint PUT `/talker/:id`
 
