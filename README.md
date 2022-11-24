@@ -1,9 +1,10 @@
 
 # 👨‍💻 O que foi desenvolvido!
-  <summary><br>
+  <summary>
+  <br>
    Uma aplicação de cadastro de talkers (palestrantes) em que é possível cadastrar, visualizar, pesquisar, editar e excluir informações.
 
-   * Foi utilizado Node.js, Express, Docker e Swagger (documentação da API). Neste projeto ainda não foi utilizado banco de dados, os dados são armazenados em memória, assim como a arquiterura ainda não foi definida, visto que se tratou de meu primeiro contato com Node.js e Express.
+   Foi utilizado Node.js, Express, Docker e Swagger (documentação da API). Neste projeto ainda não foi utilizado banco de dados, os dados são armazenados em memória, assim como a arquiterura ainda não foi definida, visto que se tratou de meu primeiro contato com Node.js e Express.
 
    <strong>características:</strong>
   1. Uma API de um `CRUD` (**C**reate, **R**ead, **U**pdate e **D**elete) de palestrantes (talkers) e;
