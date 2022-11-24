@@ -12,7 +12,6 @@ const getAllTalkers = async (req, res, _next) => {
     }
 };
 
-// Get Talker by Id
 const getTalkerById = async (req, res, _next) => {
     try {
         const talker = await fs.readFile(TALKERJSON, 'utf8');
@@ -28,7 +27,6 @@ const getTalkerById = async (req, res, _next) => {
     }
 };
 
-// post new talker
 const createTalker = async (req, res, _next) => {
     try {
         const talker = await fs.readFile(TALKERJSON, 'utf8');
@@ -50,7 +48,6 @@ const createTalker = async (req, res, _next) => {
     }
 };
 
-// update talker
 const updateTalker = async (req, res, _next) => {
     const { id } = req.params;
     let bodyTalker = req.body;
@@ -65,7 +62,6 @@ const updateTalker = async (req, res, _next) => {
     res.status(200).json(bodyTalker);
 };
 
-// delete talker
 const deleteTalker = async (req, res, _next) => {
     try {
         const talker = await fs.readFile(TALKERJSON, 'utf8');

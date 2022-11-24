@@ -1,0 +1,346 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Talker Manager - API de manipulação de palestrantes",
+        "description": "Esse foi meu primeiro CRUD desenvolvido no curso de formação web da TRYBE, visa lhe ajudar a gerenciar palestrantes e seus eventos, nela você pode cadastrar, editar, listar e excluir palestrantes e seus eventos.",
+        "version": "1.0.0",
+        "contact": {
+            "url": "http://www.linkedin.com/in/emanuelcalado"
+        }
+    },
+    "paths": {
+        "/login": {
+            "post": {
+                "summary": "Autenticação",
+                "description": "Autenticação de usuário",
+                "tags": [
+                    "Autenticação/Login"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "emanuelcalado@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário autenticado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "fb2d3c3b2e70dd26"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/talker": {
+            "post": {
+                "summary": "Cria um novo palestrante",
+                "description": "Essa rota cria um novo palestrante, por favor, insira o Token que recebeu na rota anterior - Login",
+                "tags": [
+                    "Talker"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Talker"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Palestrante criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TalkerWithId"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Lista todos os palestrantes cadastrados",
+                "description": "Essa rota lista todos os palestrantes cadastrados",
+                "tags": [
+                    "Talker"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de palestrantes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "example": {
+                                            "id": 2,
+                                            "name": "Emanuel Calado",
+                                            "age": 25,
+                                            "talk": {
+                                                "name": "Palestra sobre NodeJS",
+                                                "date": "2021-09-01",
+                                                "hour": "10:00"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/talker/search?q={name}": {
+            "get": {
+                "summary": "Busca um palestrante",
+                "description": "Essa rota busca um palestrante pelo nome parcialmente ou completo",
+                "tags": [
+                    "Talker"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Nome do palestrante",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resultado da busca pelo nome ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Talker"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/talker/{id}": {
+            "get": {
+                "summary": "Busca um palestrante pelo ID",
+                "description": "Essa rota busca um palestrante pelo ID",
+                "tags": [
+                    "Talker"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do palestrante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resultado da busca pelo ID ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Talker"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza um palestrante",
+                "description": "Essa rota atualiza um palestrante",
+                "tags": [
+                    "Talker"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do palestrante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Talker"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Palestrante atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TalkerWithId"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleta um palestrante",
+                "description": "Essa rota deleta um palestrante",
+                "tags": [
+                    "Talker"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do palestrante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Não retorna nenhuma mensagem"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Talker": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Nome do palestrante",
+                        "example": "Emanuel Calado"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "description": "Idade do palestrante",
+                        "example": 25
+                    },
+                    "talk": {
+                        "type": "object",
+                        "properties": {
+                            "watchedAt": {
+                                "type": "string",
+                                "description": "Data em que o palestrante assistiu o evento",
+                                "example": "10-10-2021"
+                            },
+                            "rate": {
+                                "type": "integer",
+                                "description": "Nota dada ao evento",
+                                "example": 5
+                            }
+                        }
+                    }
+                }
+            },
+            "TalkerWithId": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "ID do palestrante",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Nome do palestrante",
+                        "example": "Emanuel Calado"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "description": "Idade do palestrante",
+                        "example": 25
+                    },
+                    "talk": {
+                        "type": "object",
+                        "properties": {
+                            "watchedAt": {
+                                "type": "string",
+                                "description": "Data em que o palestrante assistiu o evento",
+                                "example": "10-10-2021"
+                            },
+                            "rate": {
+                                "type": "integer",
+                                "description": "Nota dada ao evento",
+                                "example": 5
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header",
+                "description": "Insira o token hexadecimal gerado no login"
+            }
+        }
+    }
+}
