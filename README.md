@@ -1,7 +1,7 @@
 
-<details>
-  <summary><strong>👨‍💻 O que foi desenvolvido</strong><br />
-
+# 👨‍💻 O que foi desenvolvido!
+  <summary>
+  <br>
    Uma aplicação de cadastro de talkers (palestrantes) em que é possível cadastrar, visualizar, pesquisar, editar e excluir informações.
 
    * Foi utilizado Node.js, Express, Docker e Swagger (documentação da API). Neste projeto ainda não foi utilizado banco de dados, os dados são armazenados em memória, assim como a arquiterura ainda não foi definida, visto que se tratou de meu primeiro contato com Node.js e Express.
@@ -17,7 +17,7 @@
     - `watchedAt` (data em que a palestra foi assistida);
     - `rate` (nota de 1 a 5 dada para a palestra).
   </summary>  
-</details>
+
 
 # Orientações
 
