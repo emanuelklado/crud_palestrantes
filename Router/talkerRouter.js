@@ -44,7 +44,6 @@ validationRateMidd,
 validationWatchedAtMidd,
 service.updateTalker);
 
-// ROTAS DELETE TALKER
 talkerRouter.delete('/:id', validationTokenMidd, service.deleteTalker);
 
 module.exports = {
